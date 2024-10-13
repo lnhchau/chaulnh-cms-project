@@ -1,0 +1,22 @@
+blinker @ file:///C:/b/abs_d9y2dm7cw2/croot/blinker_1696539752170/work
+cachelib==0.13.0
+cffi==1.17.1
+click @ file:///C:/b/abs_f9ihnt72pu/croot/click_1698129847492/work
+colorama @ file:///C:/b/abs_a9ozq0l032/croot/colorama_1672387194846/work
+cryptography==43.0.1
+Flask @ file:///C:/b/abs_f9w7doyu0h/croot/flask_1716545924884/work
+Flask-Login==0.6.3
+Flask-Session==0.8.0
+Flask-SQLAlchemy==3.1.1
+greenlet==3.1.1
+itsdangerous @ file:///C:/b/abs_c4vwgdr5yn/croot/itsdangerous_1716533399914/work
+Jinja2 @ file:///C:/b/abs_92fccttino/croot/jinja2_1716993447201/work
+MarkupSafe @ file:///C:/b/abs_ecfdqh67b_/croot/markupsafe_1704206030535/work
+msgspec==0.18.6
+pycparser==2.22
+pyodbc==5.1.0
+pyOpenSSL==24.2.1
+python-dotenv==1.0.1
+SQLAlchemy==2.0.35
+typing_extensions==4.12.2
+Werkzeug==3.0.4
