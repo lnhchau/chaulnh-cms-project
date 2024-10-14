@@ -1,0 +1,154 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+*.key
+*.pem
+*.p12
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore virtual environments (if you're using one)
+env/
+venv/
+ENV/
+venv.bak/
+
+# Ignore .env file (if you're using environment variables)
+.env
+
+# Ignore other unwanted files (add as necessary)
+*.log
+*.out
+*.err
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Azure Deployment
+# Ignore Azure-specific files if not manually needed
+.azure/
+
+# Flask-specific
+instance/
+.webassets-cache
+*.log
+*.pot
+
+# Don't commit environment-specific configuration files
+.env
+*.env
+
+# Secrets (Make sure to exclude any secret files)
+secrets.json
+
+# Django specific (if applicable)
+*.sqlite3
+db.sqlite3
+
+# Pytest
+.pytest_cache/
+.tox/
+coverage/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Testing logs
+test_results/
+
+# VS Code settings and directories
+.vscode/
+.history/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# OS-specific files
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# Docker
+*.log
+docker-compose.yml
+Dockerfile
+
+# Virtual environment and Python dependencies
+Pipfile.lock
+poetry.lock
+
+# Other project-related files
+*.pfx
+*.p12
+*.crt
+*.pem
+*.key
+
+# IDEs and editors
+.idea/
+*.iml
+.project
+.classpath
+.cproject
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# Logs and debug files
+*.log
+*.out
+*.err
+debug.log
