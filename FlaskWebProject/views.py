@@ -132,8 +132,8 @@ def _build_msal_app(cache=None, authority=None):
 def _build_auth_url(authority=None, scopes=None, state=None):
     msal_app = _build_msal_app(authority=authority)
     return msal_app.get_authorization_request_url(
-        scopes or [],  # Pass the scopes that you want to request (from Config.SCOPE)
-        state=state,  # Pass a unique state parameter to prevent CSRF attacks
-        redirect_uri=url_for('authorized', _external=True)  # The redirect URI for returning to your app
+        scopes or [],
+        state=state or str(uuid.uuid4()),
+        redirect_uri=url_for('authorized', _external=True, _scheme='https')
     )
 
