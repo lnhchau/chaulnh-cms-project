@@ -17,36 +17,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Step 1: Install system dependencies for pyodbc
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y unixodbc unixodbc-dev
-
-      # Step 2: Set up Python version 3.8
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.8'  # Using Python 3.8 instead of 3.10
+          python-version: '3.8'
 
-      # Step 3: Create a virtual environment and activate it
       - name: Create and start virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
-
-      # Step 4: Install dependencies
+      
       - name: Install dependencies
-        run: |
-          source venv/bin/activate
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
+        
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
-      # Step 5: Zip the application for deployment
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
-      # Step 6: Upload the artifact (release.zip) to be used in the deployment job
-      - name: Upload artifact for deployment
+      - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
           name: python-app
@@ -60,9 +49,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write  # This is required for requesting the JWT
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -72,38 +59,11 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      # Step 3: Log in to Azure using credentials from GitHub Secrets
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.CLIENT_ID }}
-          tenant-id: ${{ secrets.TENANT_ID }}
-          subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
-
-      # Step 4: Deploy the application to Azure Web App
+      
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'cms-app'
           slot-name: 'Production'
-
-      # Step 5: Set Azure Web App environment settings (App Settings)
-      - name: Set App Settings
-        run: |
-          az webapp config appsettings set --resource-group cms --name cms-app --settings \
-            CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} \
-            CLIENT_ID=${{ secrets.CLIENT_ID }} \
-            SQL_PASSWORD=${{ secrets.SQL_PASSWORD }} \
-            BLOB_STORAGE_KEY=${{ secrets.BLOB_STORAGE_KEY }} \
-            SECRET_KEY=${{ secrets.SECRET_KEY }} \
-            SQL_SERVER=${{ secrets.SQL_SERVER }} \
-            SQL_DATABASE=${{ secrets.SQL_DATABASE }} \
-            BLOB_CONTAINER=${{ secrets.BLOB_CONTAINER }} \
-            BLOB_ACCOUNT=${{ secrets.BLOB_ACCOUNT }} \
-            BLOB_STORAGE_URL=${{ secrets.BLOB_STORAGE_URL }}
-
-      # Optional: Restart the Azure Web App to apply changes
-      - name: Restart Azure Web App
-        run: |
-          az webapp restart --name cms-app --resource-group cms
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C42241026A634C129208840D7E4A880B }}
