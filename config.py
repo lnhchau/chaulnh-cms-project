@@ -12,7 +12,7 @@ class Config(object):
     BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT')
     BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY')
     BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER')
-    CONNECTION_STRING = os.environ.get('CONNECTION_STRING')
+    CONNECTION_STRING = os.environ.get('BLOB_CONNECTION_STRING')
 
     SQL_SERVER = os.environ.get('SQL_SERVER')
     SQL_DATABASE = os.environ.get('SQL_DATABASE')
@@ -32,7 +32,8 @@ class Config(object):
     # if not CLIENT_SECRET:
     #     raise ValueError("Need to define CLIENT_SECRET environment variable")
 
-    AUTHORITY = "https://login.microsoftonline.com/common"  # For multi-tenant app, else put tenant name
+    TENANT_ID = os.environ.get('TENANT_ID')
+    AUTHORITY = f"https://login.microsoftonline.com/{TENANT_ID}"  # For multi-tenant app, else put tenant name
     # AUTHORITY = "https://login.microsoftonline.com/f958e84a-92b8-439f-a62d-4f45996b6d07"  # For multi-tenant app, else put tenant name
     # AUTHORITY = "https://login.microsoftonline.com/Enter_the_Tenant_Name_Here"
 
